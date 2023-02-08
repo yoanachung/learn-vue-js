@@ -37,3 +37,9 @@ MVVM 패턴의 뷰모델 레이어에 해당하는 화면단 라이브러리
 ## 라우터
 뷰 라이브러리를 이용하여 싱글페이지 애플리케이션을 구현할 때 사용하는 라이브러리  
 - 설치: CND 방식, NPM 방식
+
+
+## 액시오스 axios
+뷰에서 권고하는 Promise 기반의 HTTP 통신 라이브러리  
+이외에 예전에 공식 라이브러리로 사용되던 vue resource도 있지만 현재는 쓰지 않기를 권장한다.
+(* 자바스크립트의 비동기 처리 패턴: callback > promise > promise + generator > async await)
