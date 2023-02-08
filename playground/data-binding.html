@@ -10,6 +10,16 @@
     <div id="app">
         <p v-bind:id="uuid">{{ num }}</p>
         <p>{{ doubleNum }}</p>
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            test user has been logged in.
+        </div>
+        <!-- v-if는 돔을 아예 제거하지만 v-show는 display를 none으로 설정한다. -->
+        <div v-show="loading">
+            Loading...
+        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -18,7 +28,8 @@
             el: '#app',
             data: {
                 num: 10,
-                uuid: 'abcd123'
+                uuid: 'abcd123',
+                loading: true
             },
             computed: {
                 doubleNum: function() {
