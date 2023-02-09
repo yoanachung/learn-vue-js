@@ -20,12 +20,7 @@ export default {
         return;
       }
 
-      var obj = {
-        completed: false,
-        item: this.newTodoItem
-      };
-      
-      localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+      this.$emit("addTodoItem", this.newTodoItem);
       this.clearInput();
     },
     clearInput: function() {
@@ -48,6 +43,8 @@ input:focus {
 .inputBox input {
   border-style: none;
   font-size: 0.9rem;
+  height: 90%;
+  width: 80%;
 }
 .addContainer {
   float: right;
