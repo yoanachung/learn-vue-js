@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input v-model="newTodoItem" v-on:keyup.enter="addTodo" type="text">
+    <input v-model="newTodoItem" v-on:keypress.enter="addTodo" type="text">
     <span v-on:click="addTodo" class="addContainer">
       <i class="fas fa-plus addBtn"></i>
     </span>
