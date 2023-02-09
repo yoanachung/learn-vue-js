@@ -17,6 +17,10 @@
 
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+      <div class="q-px-lg q-pt-xl">
+        <div class="text-h3">TODO</div>
+        <div class="text-subtitle1">{{ todaysDate }}</div>
+      </div>
       <q-img
         src="../statics/mountains.jpeg"
         class="header-image absolute-top"/>
@@ -50,6 +54,7 @@
 </template>
 
 <script>
+import { date } from 'quasar'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
@@ -106,6 +111,12 @@ export default {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData
+    }
+  },
+  computed: {
+    todaysDate() {
+      const timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'ddd MMM D, YYYY')
     }
   }
 }
