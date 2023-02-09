@@ -62,6 +62,13 @@
         </q-item-section>
       </q-item>
     </q-list>
+    <div
+      v-if="!tasks.length" 
+      class="no-tasks absolute-center">
+      <div class="text-h5 text-center">
+        No tasks
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -110,5 +117,8 @@ export default {
 }
 .addBtn {
   margin: 6px 5px auto auto;
+}
+.no-tasks {
+  opacity: 0.5;
 }
 </style>
