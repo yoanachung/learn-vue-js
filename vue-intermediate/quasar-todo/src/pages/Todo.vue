@@ -1,5 +1,34 @@
 <template>
   <q-page class="bg-grey-3 column">
+
+    <div class="row q-pa-sm bg-white">
+      <q-btn 
+        @click="prompt = true"
+        class="addBtn"
+        round
+        color="primary" 
+        icon="add"/>
+      <q-dialog v-model="prompt" persistent>
+        <q-card style="min-width: 500px">
+          <q-card-section>
+            <div class="text-h6">New task</div>
+          </q-card-section>
+          <q-card-section class="q-pt-none">
+            <q-input 
+              dense 
+              v-model="newTask" 
+              autofocus
+              placeholder="What's your new task?" 
+              @keyup.enter="addTask"/>
+          </q-card-section>
+          <q-card-actions align="right" class="text-primary">
+            <q-btn flat label="Cancel" v-close-popup />
+            <q-btn flat label="Add task" @click="addTask"/>
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+    </div>
+
     <q-list 
       class="bg-white"
       separator
@@ -19,7 +48,6 @@
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ task.title }}</q-item-label>
-          <q-item-label caption>{{ task.description }}</q-item-label>
         </q-item-section>
         <q-item-section
           v-if="task.done"
@@ -41,28 +69,9 @@
 export default {
   data() {
     return {
-      tasks: [
-        {
-          title: "qwer",
-          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,`,
-          done: false
-        },
-        {
-          title: "asdf",
-          description: "",
-          done: true
-        },
-        {
-          title: "zxcv",
-          description: `Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident`,
-          done: false
-        }
-      ]
+      tasks: [],
+      newTask: "",
+      prompt: false
     }
   },
   methods: {
@@ -79,6 +88,14 @@ export default {
           timeout: 600
         })
       })
+    },
+    addTask() {
+      this.prompt = false
+      this.tasks.push({
+        title: this.newTask,
+        done: false
+      })
+      this.newTask = ""
     }
   }
 }
@@ -90,5 +107,8 @@ export default {
     text-decoration: line-through;
     color: #bbb;
   }
+}
+.addBtn {
+  margin: 6px 5px auto auto;
 }
 </style>
