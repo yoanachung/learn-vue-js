@@ -80,3 +80,19 @@
     //ES6
     let oddNumbers = numbers.filter((num) => num % 2);
     ```
+
+## Enhanced Object Literals
+- 객체의 속성을 메서드로 만들 때 `function` 키워드를 생략하고 생성 가능하다.
+    ```
+    var dictionary = {
+        words: 100,
+        //ES5
+        lookup: function() {
+            console.log("find words");
+        },
+        //ES6
+        lookup() {
+            console.log("find words");
+        }
+    }
+    ```
