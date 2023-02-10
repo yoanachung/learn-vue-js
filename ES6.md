@@ -57,3 +57,26 @@
     - 하지만 객체나 배열의 내부는 변경할 수 있다.
 - `let`: 한 번 선언한 값에 대해서 같은 블록 안에서 다시 선언할 수 없다.
 
+## Arrow Function
+- 함수를 정의할 때 `function` 키워드를 사용하지 않고 `=>`로 대체한다.
+    ```
+    //ES5
+    var sum = function(a, b) {
+        return a + b;
+    }
+
+    //ES6
+    var sum = (a, b) => a + b;
+    ```
+- 화살표 함수를 사용해 콜백 함수의 문법을 간결화할 수 있다.
+    ```
+    //ES5
+    function isOdd(num) {
+        return num % 2;
+    }
+
+    var oddNumbers = numbers.filter(isOdd);
+
+    //ES6
+    let oddNumbers = numbers.filter((num) => num % 2);
+    ```
