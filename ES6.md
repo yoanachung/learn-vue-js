@@ -96,3 +96,11 @@
         }
     }
     ```
+- 객체의 속성명과 값명이 동일할 때 반복되는 이름을 생략할 수 있다.
+    ```
+    var figures = 10;
+    var dictionary = {
+        //figures: figures
+        figures
+    };
+    ```
