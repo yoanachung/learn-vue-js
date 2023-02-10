@@ -4,7 +4,7 @@
     <q-item
       v-for="(task, index) in propsdata"
       :key="task.title"
-      @click="task.done = !task.done"
+      @click="toggleTask(index)"
       :class="{ 'done bg-blue-1': task.done }"
       clickable
       v-ripple
@@ -48,6 +48,9 @@ export default {
   methods: {
     deleteTask(index) {
       this.$emit("deleteTask", index)
+    },
+    toggleTask(index) {
+      this.$emit("toggleTask", index)
     }
   }
 };

@@ -6,7 +6,8 @@
 
     <TodoList 
       v-bind:propsdata="tasks"
-      v-on:deleteTask="deleteTask"></TodoList>
+      v-on:deleteTask="deleteTask"
+      v-on:toggleTask="toggleTask"></TodoList>
 
   </q-page>
 </template>
@@ -35,6 +36,9 @@ export default {
           timeout: 600
         })
       })
+    },
+    toggleTask(index) {
+      this.tasks[index].done = !this.tasks[index].done
     },
     addTask(newTask) {
       this.tasks.push({
