@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     addOneItem: function(todoItem) {
-      var obj = {
+      const obj = {
         completed: false,
         item: todoItem
       };
@@ -50,9 +50,8 @@ export default {
       return;
     }
 
-    for (var i = 0; i < localStorage.length; i++) {
-      var obj = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      this.todoItems.push(obj);
+    for (let i = 0; i < localStorage.length; i++) {
+      this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
     }
   },
   components: {
