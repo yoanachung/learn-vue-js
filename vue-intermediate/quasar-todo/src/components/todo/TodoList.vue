@@ -1,4 +1,5 @@
 <template>
+<div>
   <q-list class="bg-white" separator border>
     <q-item
       v-for="(task, index) in propsdata"
@@ -30,6 +31,15 @@
       </q-item-section>
     </q-item>
   </q-list>
+
+  <div
+    v-if="!propsdata.length" 
+    class="no-tasks absolute-center">
+    <div class="text-h5 text-center">
+      No tasks
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -43,5 +53,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.done {
+  .q-item__label {
+    text-decoration: line-through;
+    color: #bbb;
+  }
+}
+.no-tasks {
+  opacity: 0.5;
+}
 </style>

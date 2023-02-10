@@ -8,13 +8,6 @@
       v-bind:propsdata="tasks"
       v-on:deleteTask="deleteTask"></TodoList>
 
-    <div
-      v-if="!tasks.length" 
-      class="no-tasks absolute-center">
-      <div class="text-h5 text-center">
-        No tasks
-      </div>
-    </div>
   </q-page>
 </template>
 
@@ -57,14 +50,6 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.done {
-  .q-item__label {
-    text-decoration: line-through;
-    color: #bbb;
-  }
-}
-.no-tasks {
-  opacity: 0.5;
-}
+<style>
+
 </style>
