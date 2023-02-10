@@ -16,14 +16,14 @@ import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
 
 export default {
-  data: function() {
+  data() {
     return {
       todoItems: []
     }
   },
   methods: {
-    addOneItem: function(todoItem) {
-      var obj = {
+    addOneItem(todoItem) {
+      const obj = {
         completed: false,
         item: todoItem
       };
@@ -31,35 +31,34 @@ export default {
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem: function(todoItem, index) {
+    removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem: function(todoItem, index) {
+    toggleOneItem(todoItem, index) {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    clearAllItems: function() {
+    clearAllItems() {
       this.todoItems = [];
       localStorage.clear();
     }
   },
-  created: function() {
+  created() {
     if (localStorage.length < 1) {
       return;
     }
 
-    for (var i = 0; i < localStorage.length; i++) {
-      var obj = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      this.todoItems.push(obj);
+    for (let i = 0; i < localStorage.length; i++) {
+      this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
     }
   },
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList': TodoList,
-    'TodoFooter': TodoFooter,
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter,
   }
 }
 </script>
