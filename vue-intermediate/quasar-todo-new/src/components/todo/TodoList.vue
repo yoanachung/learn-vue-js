@@ -1,10 +1,28 @@
 <template>
   <div>
-    <ul>
-      <li v-for="task in todoTasks" :key="task.id">
-        {{ task.id }} - {{ task.title }} - {{ task.done }}
-      </li>
-    </ul>
+    <q-list class="bg-white" separator border>
+      <q-item
+        v-for="task in todoTasks"
+        :key="task.id"
+        :class="{ 'done bg-blue-1': task.done }"
+        clickable
+        v-ripple
+      >
+        <q-item-section avatar>
+          <q-checkbox
+            v-model="task.done"
+            class="no-pointer-events"
+            color="primary"
+          />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ task.title }}</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          <q-btn flat round dense color="primary" icon="delete" />
+        </q-item-section>
+      </q-item>
+    </q-list>
   </div>
 </template>
 
@@ -22,4 +40,14 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.done {
+  .q-item__label {
+    text-decoration: line-through;
+    color: #bbb;
+  }
+}
+.no-tasks {
+  opacity: 0.5;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="bg-grey-3 column">
     <TodoAdd></TodoAdd>
     <TodoList></TodoList>
   </q-page>
