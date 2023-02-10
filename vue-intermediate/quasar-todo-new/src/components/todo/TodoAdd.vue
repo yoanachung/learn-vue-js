@@ -1,6 +1,33 @@
 <template>
-  <div>
-    <input @keyup.enter="addTask" v-model="newTitle" />
+  <div class="row q-pa-sm bg-white">
+    <q-btn
+      @click="prompt = true"
+      class="addBtn"
+      color="primary"
+      icon="add"
+      round
+    />
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="min-width: 500px">
+        <q-card-section>
+          <div class="text-h6">New task</div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <q-input
+            dense
+            v-model="newTitle"
+            autofocus
+            placeholder="What's your new task?"
+            @keyup.enter="addTask"
+          />
+        </q-card-section>
+        <q-card-actions align="right" class="text-primary">
+          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn flat label="Add task" @click="addTask" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <!-- <input @keyup.enter="addTask" v-model="newTitle" /> -->
   </div>
 </template>
 
@@ -11,6 +38,7 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
+    let prompt = ref(false);
     const newTitle = ref('');
     const todoStore = useTodoStore();
 
@@ -22,12 +50,17 @@ export default defineComponent({
       };
 
       todoStore.addTask(newTask);
-      return { newTitle, addTask };
+      newTitle.value = '';
+      prompt.value = false;
     }
 
-    return { newTitle, addTask };
+    return { prompt, newTitle, addTask };
   },
 });
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.addBtn {
+  margin: 6px 5px auto auto;
+}
+</style>
