@@ -6,3 +6,9 @@ export interface Todo {
 export interface Meta {
   totalCount: number;
 }
+
+export interface TodoTask {
+  id: number;
+  title: string;
+  done: boolean;
+}
