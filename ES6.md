@@ -104,3 +104,23 @@
         figures
     };
     ```
+
+## Modules - 자바스크립트 모듈화하기
+- 자바스크립트 모듈 로더 라이브러리(AMD, Commons JS)기능을 js 언어 자체에서 지원하기 시작했다.
+- 기존의 변수 스코프 충돌 문제를 해결하고 코드 재사용성을 높였다.
+- 호출되기 전까지는 코드 실행, 동작을 하지 않는다.
+    ```
+    // libs/math.js
+    export function sum(x, y) {
+        return x + y;
+    }
+
+    export var pi = 3.141593;
+
+    // main.js
+    import { sum } from 'libs/math.js';
+    sum(1, 2);
+    ```
+- `export default`를 사용해 하나의 파일에서 하나의 개체만 export 할 수 있다. 
+    - 해당 모듈에 개체가 하나만 있음을 확실히 할 수 있다. (for 캡슐화)
+    - `{}` 없이 import 할 수 있다. 
