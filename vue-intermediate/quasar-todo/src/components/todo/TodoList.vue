@@ -36,8 +36,8 @@
 export default {
   props: ["propsdata"],
   methods: {
-    deleteTask() {
-      this.$emit("deleteTask")
+    deleteTask(index) {
+      this.$emit("deleteTask", index)
     }
   }
 };
