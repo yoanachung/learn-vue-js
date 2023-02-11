@@ -12,5 +12,12 @@ export const useTodoStore = defineStore('todo', () => {
     tasks.value.push(newTask);
   }
 
-  return { tasks, nextId, addTask };
+  function deleteTask(id: number) {
+    tasks.value.splice(
+      tasks.value.findIndex((t) => t.id === id),
+      1
+    );
+  }
+
+  return { tasks, nextId, addTask, deleteTask };
 });

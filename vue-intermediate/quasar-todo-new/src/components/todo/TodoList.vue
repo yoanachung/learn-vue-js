@@ -19,7 +19,14 @@
           <q-item-label>{{ task.title }}</q-item-label>
         </q-item-section>
         <q-item-section side>
-          <q-btn flat round dense color="primary" icon="delete" />
+          <q-btn
+            @click.stop="deleteTask(task.id)"
+            flat
+            round
+            dense
+            color="primary"
+            icon="delete"
+          />
         </q-item-section>
       </q-item>
     </q-list>
@@ -35,7 +42,12 @@ export default defineComponent({
   setup() {
     const todoStore = useTodoStore();
     const todoTasks = ref<TodoTask[]>(todoStore.tasks);
-    return { todoTasks };
+
+    function deleteTask(id: number) {
+      todoStore.deleteTask(id);
+    }
+
+    return { todoTasks, deleteTask };
   },
 });
 </script>
