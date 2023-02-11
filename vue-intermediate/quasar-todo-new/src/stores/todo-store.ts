@@ -19,5 +19,10 @@ export const useTodoStore = defineStore('todo', () => {
     );
   }
 
-  return { tasks, nextId, addTask, deleteTask };
+  function toggleTask(id: number) {
+    const task = tasks.value.filter((t) => t.id === id)[0];
+    task.done = !task.done;
+  }
+
+  return { tasks, nextId, addTask, deleteTask, toggleTask };
 });

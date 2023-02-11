@@ -5,6 +5,7 @@
         v-for="task in todoTasks"
         :key="task.id"
         :class="{ 'done bg-blue-1': task.done }"
+        @click="todoStore.toggleTask(task.id)"
         clickable
         v-ripple
       >
@@ -20,7 +21,7 @@
         </q-item-section>
         <q-item-section side>
           <q-btn
-            @click.stop="deleteTask(task.id)"
+            @click.stop="todoStore.deleteTask(task.id)"
             flat
             round
             dense
@@ -42,12 +43,7 @@ export default defineComponent({
   setup() {
     const todoStore = useTodoStore();
     const todoTasks = ref<TodoTask[]>(todoStore.tasks);
-
-    function deleteTask(id: number) {
-      todoStore.deleteTask(id);
-    }
-
-    return { todoTasks, deleteTask };
+    return { todoStore, todoTasks };
   },
 });
 </script>
