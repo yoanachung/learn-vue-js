@@ -16,7 +16,7 @@
           />
         </q-card-section>
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn flat label="Cancel" @click="closeDialog" />
           <q-btn flat label="Add task" @click="addTask" />
         </q-card-actions>
       </q-card>
@@ -41,6 +41,10 @@ function addTask() {
   };
 
   todoStore.addTask(newTask);
+  closeDialog();
+}
+
+function closeDialog() {
   newTitle.value = '';
   prompt.value = false;
 }
