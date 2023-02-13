@@ -18,7 +18,7 @@
             v-model="newTitle"
             autofocus
             placeholder="What's your new task?"
-            @keyup.enter="addTask"
+            @keypress.enter="addTask"
           />
         </q-card-section>
         <q-card-actions align="right" class="text-primary">
