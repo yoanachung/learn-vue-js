@@ -2,7 +2,7 @@
   <div class="addBtn">
     <q-btn @click="prompt = true" color="primary" icon="add" round />
     <q-dialog v-model="prompt" persistent>
-      <q-card style="min-width: 500px">
+      <q-card class="full-width">
         <q-card-section>
           <div class="text-h6">New task</div>
         </q-card-section>
