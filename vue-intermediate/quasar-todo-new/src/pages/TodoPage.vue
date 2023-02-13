@@ -5,12 +5,7 @@
   </q-page>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import TodoList from '../components/todo/TodoList.vue';
 import TodoAdd from '../components/todo/TodoAdd.vue';
-
-export default defineComponent({
-  components: { TodoList, TodoAdd },
-});
 </script>

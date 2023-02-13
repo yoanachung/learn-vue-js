@@ -34,18 +34,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { TodoTask } from 'components/models';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import { useTodoStore } from '../../stores/todo-store';
 
-export default defineComponent({
-  setup() {
-    const todoStore = useTodoStore();
-    const todoTasks = ref<TodoTask[]>(todoStore.tasks);
-    return { todoStore, todoTasks };
-  },
-});
+const todoStore = useTodoStore();
+const todoTasks = ref<TodoTask[]>(todoStore.tasks);
 </script>
 
 <style scoped lang="scss">

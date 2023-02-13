@@ -27,36 +27,30 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <!-- <input @keyup.enter="addTask" v-model="newTitle" /> -->
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { TodoTask } from 'components/models';
 import { useTodoStore } from '../../stores/todo-store';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 
-export default defineComponent({
-  setup() {
-    let prompt = ref(false);
-    const newTitle = ref('');
-    const todoStore = useTodoStore();
+let prompt = ref(false);
+const newTitle = ref('');
 
-    function addTask() {
-      const newTask: TodoTask = {
-        id: todoStore.nextId,
-        title: newTitle.value,
-        done: false,
-      };
+function addTask() {
+  const todoStore = useTodoStore();
 
-      todoStore.addTask(newTask);
-      newTitle.value = '';
-      prompt.value = false;
-    }
+  const newTask: TodoTask = {
+    id: todoStore.nextId,
+    title: newTitle.value,
+    done: false,
+  };
 
-    return { prompt, newTitle, addTask };
-  },
-});
+  todoStore.addTask(newTask);
+  newTitle.value = '';
+  prompt.value = false;
+}
 </script>
 
 <style scoped lang="scss">
