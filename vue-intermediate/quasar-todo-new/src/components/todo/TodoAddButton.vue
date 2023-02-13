@@ -1,12 +1,6 @@
 <template>
-  <div class="row q-pa-sm bg-white">
-    <q-btn
-      @click="prompt = true"
-      class="addBtn"
-      color="primary"
-      icon="add"
-      round
-    />
+  <div class="addBtn">
+    <q-btn @click="prompt = true" color="primary" icon="add" round />
     <q-dialog v-model="prompt" persistent>
       <q-card style="min-width: 500px">
         <q-card-section>
@@ -37,10 +31,9 @@ import { ref } from 'vue';
 
 let prompt = ref(false);
 const newTitle = ref('');
+const todoStore = useTodoStore();
 
 function addTask() {
-  const todoStore = useTodoStore();
-
   const newTask: TodoTask = {
     id: todoStore.nextId,
     title: newTitle.value,
@@ -53,8 +46,4 @@ function addTask() {
 }
 </script>
 
-<style scoped lang="scss">
-.addBtn {
-  margin: 6px 5px auto auto;
-}
-</style>
+<style scoped lang="scss"></style>
