@@ -35,12 +35,10 @@
 </template>
 
 <script setup lang="ts">
-import { TodoTask } from 'components/models';
-import { ref } from 'vue';
 import { useTodoStore } from '../../stores/todo-store';
 
 const todoStore = useTodoStore();
-const todoTasks = ref<TodoTask[]>(todoStore.tasks);
+const todoTasks = todoStore.tasks;
 </script>
 
 <style scoped lang="scss">
