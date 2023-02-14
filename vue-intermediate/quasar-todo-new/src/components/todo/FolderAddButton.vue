@@ -33,12 +33,12 @@
 
 <script setup lang="ts">
 import { TodoFolder } from '../models';
-import { useTodoFolderStore } from '../../stores/todo-folder-store';
+import { useFolderStore } from '../../stores/todo-folder-store';
 import { ref } from 'vue';
 
 let prompt = ref(false);
 const newName = ref('');
-const folderStore = useTodoFolderStore();
+const folderStore = useFolderStore();
 
 function addFolder() {
   const newFolder: TodoFolder = {

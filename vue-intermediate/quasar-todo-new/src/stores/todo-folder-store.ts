@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoFolder } from 'components/models';
 
-export const useTodoFolderStore = defineStore('todo', () => {
+export const useFolderStore = defineStore('todo', () => {
   const folders = ref<TodoFolder[]>([]);
   const nextId = ref(0);
 
