@@ -12,3 +12,8 @@ export interface TodoTask {
   title: string;
   done: boolean;
 }
+
+export interface TodoFolder {
+  id: number;
+  name: string;
+}
