@@ -1,5 +1,7 @@
 <template>
   <div>
+    <TodoFolderAddButton></TodoFolderAddButton>
+
     <q-item clickable v-for="folder in todoFolders" :key="folder.id">
       <q-item-section avatar>
         <q-icon name="folder" />
@@ -13,6 +15,7 @@
 
 <script setup lang="ts">
 import { useTodoFolderStore } from '../../stores/todo-folder-store';
+import TodoFolderAddButton from './TodoFolderAddButton.vue';
 
 const todoStore = useTodoFolderStore();
 const todoFolders = todoStore.folders;
