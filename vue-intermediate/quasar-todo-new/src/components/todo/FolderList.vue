@@ -1,7 +1,6 @@
 <template>
   <div>
     <FolderAddButton></FolderAddButton>
-
     <q-item
       clickable
       v-for="folder in folders"
@@ -16,23 +15,16 @@
         <q-item-label>{{ folder.name }}</q-item-label>
       </q-item-section>
       <q-item-section side>
-        <q-btn
-          @click.stop="folderStore.deleteFolder(folder.id)"
-          flat
-          round
-          dense
-          color="grey-4"
-          icon="delete"
-          size="sm"
-        />
+        <FolderDeleteButton :folderId="folder.id"></FolderDeleteButton>
       </q-item-section>
     </q-item>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useFolderStore } from '../../stores/todo-folder-store';
+import { useFolderStore } from 'src/stores/todo-folder-store';
 import FolderAddButton from './FolderAddButton.vue';
+import FolderDeleteButton from './FolderDeleteButton.vue';
 
 const folderStore = useFolderStore();
 const folders = folderStore.folders;
