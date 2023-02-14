@@ -9,6 +9,17 @@
       <q-item-section>
         <q-item-label>{{ folder.name }}</q-item-label>
       </q-item-section>
+      <q-item-section side>
+        <q-btn
+          @click.stop="folderStore.deleteFolder(folder.id)"
+          flat
+          round
+          dense
+          color="grey-4"
+          icon="delete"
+          size="sm"
+        />
+      </q-item-section>
     </q-item>
   </div>
 </template>
