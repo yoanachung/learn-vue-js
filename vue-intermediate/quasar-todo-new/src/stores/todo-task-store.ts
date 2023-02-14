@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoTask } from 'components/models';
 
-export const useTodoStore = defineStore('todo', () => {
+export const useTaskStore = defineStore('task', () => {
   const tasks = ref<TodoTask[]>([]);
   const nextId = ref(0);
 

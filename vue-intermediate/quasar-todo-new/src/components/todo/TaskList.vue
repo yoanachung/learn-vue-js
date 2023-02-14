@@ -2,10 +2,10 @@
   <div>
     <q-list class="bg-white" separator border>
       <q-item
-        v-for="task in todoTasks"
+        v-for="task in tasks"
         :key="task.id"
         :class="{ 'done bg-blue-1': task.done }"
-        @click="todoStore.toggleTask(task.id)"
+        @click="taskStore.toggleTask(task.id)"
         clickable
         v-ripple
       >
@@ -21,7 +21,7 @@
         </q-item-section>
         <q-item-section side>
           <q-btn
-            @click.stop="todoStore.deleteTask(task.id)"
+            @click.stop="taskStore.deleteTask(task.id)"
             flat
             round
             dense
@@ -35,10 +35,10 @@
 </template>
 
 <script setup lang="ts">
-import { useTodoStore } from '../../stores/todo-store';
+import { useTaskStore } from '../../stores/todo-task-store';
 
-const todoStore = useTodoStore();
-const todoTasks = todoStore.tasks;
+const taskStore = useTaskStore();
+const tasks = taskStore.tasks;
 </script>
 
 <style scoped lang="scss">

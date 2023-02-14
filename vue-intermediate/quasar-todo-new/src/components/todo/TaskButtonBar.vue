@@ -1,11 +1,11 @@
 <template>
   <div class="row q-pa-sm bg-white">
-    <TodoAddButton></TodoAddButton>
+    <TaskAddButton></TaskAddButton>
   </div>
 </template>
 
 <script setup>
-import TodoAddButton from './TodoAddButton.vue';
+import TaskAddButton from './TaskAddButton.vue';
 </script>
 
 <style lang="scss" scoped>

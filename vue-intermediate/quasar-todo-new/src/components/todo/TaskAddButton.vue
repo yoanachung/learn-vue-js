@@ -31,21 +31,21 @@
 
 <script setup lang="ts">
 import { TodoTask } from 'components/models';
-import { useTodoStore } from '../../stores/todo-store';
+import { useTaskStore } from 'src/stores/todo-task-store';
 import { ref } from 'vue';
 
 let prompt = ref(false);
 const newTitle = ref('');
-const todoStore = useTodoStore();
+const taskStore = useTaskStore();
 
 function addTask() {
   const newTask: TodoTask = {
-    id: todoStore.nextId,
+    id: taskStore.nextId,
     title: newTitle.value,
     done: false,
   };
 
-  todoStore.addTask(newTask);
+  taskStore.addTask(newTask);
   closeDialog();
 }
 
