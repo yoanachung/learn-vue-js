@@ -18,10 +18,14 @@ export const useTaskStore = defineStore('task', () => {
     );
   }
 
+  function deleteTaskByFolder(folderId: number) {
+    tasks.value = tasks.value.filter((t) => t.folderId !== folderId);
+  }
+
   function toggleTask(id: number) {
     const task = tasks.value.filter((t) => t.id === id)[0];
     task.done = !task.done;
   }
 
-  return { tasks, nextId, addTask, deleteTask, toggleTask };
+  return { tasks, nextId, addTask, deleteTask, deleteTaskByFolder, toggleTask };
 });

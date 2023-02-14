@@ -33,11 +33,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useFolderStore } from 'src/stores/todo-folder-store';
+import { useTaskStore } from 'src/stores/todo-task-store';
 
 const folderStore = useFolderStore();
+const taskStore = useTaskStore();
+
 const deleteDialog = ref(false);
 
 function deleteFolder(folderId: number) {
+  taskStore.deleteTaskByFolder(folderId);
   folderStore.deleteFolder(folderId);
   deleteDialog.value = false;
 }

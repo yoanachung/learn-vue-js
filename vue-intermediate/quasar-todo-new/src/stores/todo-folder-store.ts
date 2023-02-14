@@ -22,6 +22,8 @@ export const useFolderStore = defineStore('todo', () => {
       folders.value.findIndex((t) => t.id === id),
       1
     );
+
+    currentFolderId.value = folders.value[0].id;
   }
 
   function openFolder(id: number) {
