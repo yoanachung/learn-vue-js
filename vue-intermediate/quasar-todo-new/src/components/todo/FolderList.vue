@@ -2,7 +2,13 @@
   <div>
     <FolderAddButton></FolderAddButton>
 
-    <q-item clickable v-for="folder in folders" :key="folder.id">
+    <q-item
+      clickable
+      v-for="folder in folders"
+      :key="folder.id"
+      :active="folder.id === folderStore.currentFolderId"
+      @click="folderStore.openFolder(folder.id)"
+    >
       <q-item-section avatar>
         <q-icon name="folder" />
       </q-item-section>

@@ -32,16 +32,20 @@
 <script setup lang="ts">
 import { TodoTask } from 'components/models';
 import { useTaskStore } from 'src/stores/todo-task-store';
+import { useFolderStore } from 'src/stores/todo-folder-store';
 import { ref } from 'vue';
+
+const taskStore = useTaskStore();
+const folderStore = useFolderStore();
 
 let prompt = ref(false);
 const newTitle = ref('');
-const taskStore = useTaskStore();
 
 function addTask() {
   const newTask: TodoTask = {
     id: taskStore.nextId,
     title: newTitle.value,
+    folderId: folderStore.currentFolderId,
     done: false,
   };
 

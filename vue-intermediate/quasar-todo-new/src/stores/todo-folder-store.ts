@@ -3,8 +3,14 @@ import { ref } from 'vue';
 import { TodoFolder } from 'components/models';
 
 export const useFolderStore = defineStore('todo', () => {
-  const folders = ref<TodoFolder[]>([]);
-  const nextId = ref(0);
+  const defaultFolder: TodoFolder = {
+    id: 0,
+    name: 'My Folder',
+  };
+
+  const folders = ref<TodoFolder[]>([defaultFolder]);
+  const nextId = ref(1);
+  const currentFolderId = ref(0);
 
   function addFolder(newTask: TodoFolder) {
     nextId.value++;
@@ -18,5 +24,16 @@ export const useFolderStore = defineStore('todo', () => {
     );
   }
 
-  return { folders, nextId, addFolder, deleteFolder };
+  function openFolder(id: number) {
+    currentFolderId.value = id;
+  }
+
+  return {
+    folders,
+    nextId,
+    currentFolderId,
+    addFolder,
+    deleteFolder,
+    openFolder,
+  };
 });
