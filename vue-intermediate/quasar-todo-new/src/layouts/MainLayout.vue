@@ -20,6 +20,7 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header> Folder </q-item-label>
+        <TodoFolderList></TodoFolderList>
       </q-list>
     </q-drawer>
 
@@ -31,6 +32,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import TodoFolderList from '../components/todo/TodoFolderList.vue';
 
 const leftDrawerOpen = ref(false);
 
