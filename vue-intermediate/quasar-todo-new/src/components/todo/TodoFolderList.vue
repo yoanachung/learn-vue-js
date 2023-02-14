@@ -1,27 +1,21 @@
 <template>
-  <q-item clickable v-for="folder in todoFolders" :key="folder.id">
-    <q-item-section avatar>
-      <q-icon name="folder" />
-    </q-item-section>
-    <q-item-section>
-      <q-item-label>{{ folder.name }}</q-item-label>
-    </q-item-section>
-  </q-item>
+  <div>
+    <q-item clickable v-for="folder in todoFolders" :key="folder.id">
+      <q-item-section avatar>
+        <q-icon name="folder" />
+      </q-item-section>
+      <q-item-section>
+        <q-item-label>{{ folder.name }}</q-item-label>
+      </q-item-section>
+    </q-item>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { TodoFolder } from '../models';
+import { useTodoFolderStore } from '../../stores/todo-folder-store';
 
-const todoFolders: TodoFolder[] = [
-  {
-    id: 1,
-    name: 'test folder2',
-  },
-  {
-    id: 2,
-    name: 'test folder2',
-  },
-];
+const todoStore = useTodoFolderStore();
+const todoFolders = todoStore.folders;
 </script>
 
 <style lang="scss" scoped></style>
