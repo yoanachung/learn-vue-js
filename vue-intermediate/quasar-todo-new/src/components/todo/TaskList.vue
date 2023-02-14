@@ -2,7 +2,7 @@
   <div>
     <q-list class="bg-white" separator border>
       <q-item
-        v-for="task in tasks"
+        v-for="task in tasksInFolder"
         :key="task.id"
         :class="{ 'done bg-blue-1': task.done }"
         @click="taskStore.toggleTask(task.id)"
@@ -35,10 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import { useTaskStore } from '../../stores/todo-task-store';
+import { computed } from 'vue';
+import { useTaskStore } from 'src/stores/todo-task-store';
+import { useFolderStore } from 'src/stores/todo-folder-store';
 
 const taskStore = useTaskStore();
-const tasks = taskStore.tasks;
+const folderStore = useFolderStore();
+
+const tasksInFolder = computed(() =>
+  taskStore.tasks.filter((t) => t.folderId == folderStore.currentFolderId)
+);
 </script>
 
 <style scoped lang="scss">
