@@ -14,7 +14,7 @@
       <q-item-section>
         <q-item-label>{{ folder.name }}</q-item-label>
       </q-item-section>
-      <q-item-section side>
+      <q-item-section side v-if="folders.length > 1">
         <FolderDeleteButton :folderId="folder.id"></FolderDeleteButton>
       </q-item-section>
     </q-item>
