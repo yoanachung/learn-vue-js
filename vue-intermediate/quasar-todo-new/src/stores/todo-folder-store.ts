@@ -24,7 +24,7 @@ export const useFolderStore = defineStore('todo', () => {
 
   function deleteFolder(id: string) {
     firebase.deleteFolder(id);
-    openFolder(currentFolderId.value);
+    openFolder(currentFolderId.value == id ? '' : currentFolderId.value);
   }
 
   function openFolder(id: string) {
