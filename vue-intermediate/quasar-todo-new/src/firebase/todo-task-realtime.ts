@@ -1,4 +1,4 @@
-import db from './firebase';
+import { realtimeDB } from './firebase';
 import {
   getDatabase,
   ref,
@@ -10,7 +10,7 @@ import {
 } from 'firebase/database';
 import { TodoTask } from 'src/components/models';
 
-const useTaskFirebase = () => {
+const useTaskRealtimeDB = () => {
   async function readTasks(): Promise<TodoTask[]> {
     const tasksRef = ref(getDatabase());
     const data = await get(child(tasksRef, 'tasks'));
@@ -18,19 +18,19 @@ const useTaskFirebase = () => {
   }
 
   function writeTask(task: TodoTask) {
-    const tasksRef = ref(db, `tasks/${task.id}`);
+    const tasksRef = ref(realtimeDB, `tasks/${task.id}`);
     set(tasksRef, task);
   }
 
   function removeTask(taskId: string) {
-    const taskRef = ref(db, `tasks/${taskId}`);
+    const taskRef = ref(realtimeDB, `tasks/${taskId}`);
     remove(taskRef);
   }
 
   function updateTask(task: TodoTask) {
     const updates: { [key: string]: TodoTask } = {};
     updates[`tasks/${task.id}`] = task;
-    update(ref(db), updates);
+    update(ref(realtimeDB), updates);
   }
 
   return {
@@ -41,4 +41,4 @@ const useTaskFirebase = () => {
   };
 };
 
-export default useTaskFirebase;
+export default useTaskRealtimeDB;

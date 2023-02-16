@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoFolder } from 'components/models';
-import useFolderFirebase from 'src/firebase/todo-folder-firebase';
+import useFolderRealtimeDB from 'src/firebase/todo-folder-realtime';
 
 export const useFolderStore = defineStore('todo', () => {
-  const firebase = useFolderFirebase();
+  const firebase = useFolderRealtimeDB();
   const folders = ref<TodoFolder[]>([]);
   const currentFolderId = ref<string>('');
 

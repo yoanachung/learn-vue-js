@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoTask } from 'components/models';
-import useTaskFirebase from 'src/firebase/todo-task-firebase';
+import useTaskRealtimeDB from 'src/firebase/todo-task-realtime';
 
 export const useTaskStore = defineStore('task', () => {
-  const firebase = useTaskFirebase();
+  const firebase = useTaskRealtimeDB();
   const tasks = ref<TodoTask[]>([]);
 
   loadTasks();
