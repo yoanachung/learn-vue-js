@@ -1,29 +1,20 @@
 import { TodoFolder } from 'src/components/models';
-import {
-  collection,
-  onSnapshot,
-  doc,
-  setDoc,
-  deleteDoc,
-} from 'firebase/firestore';
-import { firestore } from './firebase';
+import useFirestore from './firestore';
 
 const PATH = 'folders';
+const firestore = useFirestore<TodoFolder>(PATH);
 
 const useFolderFirestore = () => {
   function readFolders(callback: (folders: TodoFolder[]) => void) {
-    onSnapshot(collection(firestore, PATH), (snapshot) => {
-      const data = snapshot.docs.map((d) => d.data() as TodoFolder);
-      callback(data);
-    });
+    firestore.read(callback);
   }
 
   function writeFolder(folder: TodoFolder) {
-    setDoc(doc(firestore, PATH, folder.id), folder);
+    firestore.write(folder.id, folder);
   }
 
   function deleteFolder(folderId: string) {
-    deleteDoc(doc(firestore, PATH, folderId));
+    firestore.remove(folderId);
   }
 
   return {

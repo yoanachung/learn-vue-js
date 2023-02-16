@@ -1,29 +1,20 @@
 import { TodoTask } from 'src/components/models';
-import {
-  collection,
-  onSnapshot,
-  doc,
-  setDoc,
-  deleteDoc,
-} from 'firebase/firestore';
-import { firestore } from './firebase';
+import useFirestore from './firestore';
 
 const PATH = 'tasks';
+const firestore = useFirestore<TodoTask>(PATH);
 
 const useTaskFirestore = () => {
   function readTasks(callback: (tasks: TodoTask[]) => void) {
-    onSnapshot(collection(firestore, PATH), (snapshot) => {
-      const data = snapshot.docs.map((d) => d.data() as TodoTask);
-      callback(data);
-    });
+    firestore.read(callback);
   }
 
   function writeTask(task: TodoTask) {
-    setDoc(doc(firestore, PATH, task.id), task);
+    firestore.write(task.id, task);
   }
 
   function deleteTask(taskId: string) {
-    deleteDoc(doc(firestore, PATH, taskId));
+    firestore.remove(taskId);
   }
 
   return {
