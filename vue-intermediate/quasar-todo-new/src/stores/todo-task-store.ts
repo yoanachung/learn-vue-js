@@ -1,31 +1,36 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoTask } from 'components/models';
+import useTaskFirebase from 'src/firebase/todo-task-firebase';
 
 export const useTaskStore = defineStore('task', () => {
+  const firebase = useTaskFirebase();
   const tasks = ref<TodoTask[]>([]);
-  const nextId = ref(0);
 
-  function addTask(newTask: TodoTask) {
-    nextId.value++;
-    tasks.value.push(newTask);
+  loadTasks();
+
+  async function loadTasks() {
+    tasks.value = await firebase.readTasks();
   }
 
-  function deleteTask(id: number) {
+  function addTask(newTask: TodoTask) {
+    tasks.value.push(newTask);
+    firebase.writeTask(newTask);
+  }
+
+  function deleteTask(id: string) {
     tasks.value.splice(
       tasks.value.findIndex((t) => t.id === id),
       1
     );
+    firebase.removeTask(id);
   }
 
-  function deleteTaskByFolder(folderId: number) {
-    tasks.value = tasks.value.filter((t) => t.folderId !== folderId);
-  }
-
-  function toggleTask(id: number) {
+  function toggleTask(id: string) {
     const task = tasks.value.filter((t) => t.id === id)[0];
     task.done = !task.done;
+    firebase.updateTask(task);
   }
 
-  return { tasks, nextId, addTask, deleteTask, deleteTaskByFolder, toggleTask };
+  return { tasks, addTask, deleteTask, toggleTask };
 });

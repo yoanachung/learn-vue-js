@@ -8,13 +8,13 @@ export interface Meta {
 }
 
 export interface TodoTask {
-  id: number;
-  folderId: number;
+  id: string;
+  folderId: string;
   title: string;
   done: boolean;
 }
 
 export interface TodoFolder {
-  id: number;
+  id: string;
   name: string;
 }

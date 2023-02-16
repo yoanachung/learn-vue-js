@@ -3,7 +3,7 @@
     <FolderAddButton></FolderAddButton>
     <q-item
       clickable
-      v-for="folder in folders"
+      v-for="folder in folderStore.folders"
       :key="folder.id"
       :active="folder.id === folderStore.currentFolderId"
       @click="folderStore.openFolder(folder.id)"
@@ -14,7 +14,7 @@
       <q-item-section>
         <q-item-label>{{ folder.name }}</q-item-label>
       </q-item-section>
-      <q-item-section side v-if="folders.length > 1">
+      <q-item-section side v-if="folderStore.folders.length > 1">
         <FolderDeleteButton :folderId="folder.id"></FolderDeleteButton>
       </q-item-section>
     </q-item>
@@ -27,7 +27,6 @@ import FolderAddButton from './FolderAddButton.vue';
 import FolderDeleteButton from './FolderDeleteButton.vue';
 
 const folderStore = useFolderStore();
-const folders = folderStore.folders;
 </script>
 
 <style lang="scss" scoped></style>
