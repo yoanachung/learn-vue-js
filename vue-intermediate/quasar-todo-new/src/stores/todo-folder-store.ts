@@ -28,10 +28,10 @@ export const useFolderStore = defineStore('todo', () => {
   }
 
   function openFolder(id: string) {
-    if (folders.value.findIndex((f) => f.id === id) > -1) {
-      currentFolderId.value = id;
-    } else {
+    if (id === '') {
       currentFolderId.value = folders.value[0].id;
+    } else {
+      currentFolderId.value = id;
     }
   }
 
