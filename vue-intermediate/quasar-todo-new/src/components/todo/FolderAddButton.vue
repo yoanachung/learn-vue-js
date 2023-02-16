@@ -35,6 +35,7 @@
 import { TodoFolder } from '../models';
 import { useFolderStore } from '../../stores/todo-folder-store';
 import { ref } from 'vue';
+import generateId from '../id-generator';
 
 let prompt = ref(false);
 const newName = ref('');
@@ -42,7 +43,7 @@ const folderStore = useFolderStore();
 
 function addFolder() {
   const newFolder: TodoFolder = {
-    id: folderStore.nextId,
+    id: generateId(),
     name: newName.value,
   };
 

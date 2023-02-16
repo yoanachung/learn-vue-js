@@ -34,6 +34,7 @@ import { TodoTask } from 'components/models';
 import { useTaskStore } from 'src/stores/todo-task-store';
 import { useFolderStore } from 'src/stores/todo-folder-store';
 import { ref } from 'vue';
+import generateId from '../id-generator';
 
 const taskStore = useTaskStore();
 const folderStore = useFolderStore();
@@ -43,7 +44,7 @@ const newTitle = ref('');
 
 function addTask() {
   const newTask: TodoTask = {
-    id: taskStore.nextId,
+    id: generateId(),
     title: newTitle.value,
     folderId: folderStore.currentFolderId,
     done: false,

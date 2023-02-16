@@ -21,7 +21,7 @@
           <q-btn
             flat
             label="Delete"
-            @click.stop="deleteFolder($attrs.folderId as number)"
+            @click.stop="deleteFolder($attrs.folderId as string)"
           />
           <q-btn flat label="Close" v-close-popup />
         </q-card-actions>
@@ -33,15 +33,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useFolderStore } from 'src/stores/todo-folder-store';
-import { useTaskStore } from 'src/stores/todo-task-store';
 
 const folderStore = useFolderStore();
-const taskStore = useTaskStore();
-
 const deleteDialog = ref(false);
 
-function deleteFolder(folderId: number) {
-  taskStore.deleteTaskByFolder(folderId);
+function deleteFolder(folderId: string) {
   folderStore.deleteFolder(folderId);
   deleteDialog.value = false;
 }

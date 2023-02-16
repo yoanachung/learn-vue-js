@@ -1,38 +1,40 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { TodoFolder } from 'components/models';
+import useFolderFirebase from 'src/firebase/todo-folder-firebase';
 
 export const useFolderStore = defineStore('todo', () => {
-  const defaultFolder: TodoFolder = {
-    id: 0,
-    name: 'My Folder',
-  };
+  const firebase = useFolderFirebase();
+  const folders = ref<TodoFolder[]>([]);
+  const currentFolderId = ref<string>('');
 
-  const folders = ref<TodoFolder[]>([defaultFolder]);
-  const nextId = ref(1);
-  const currentFolderId = ref(0);
+  loadFolders();
 
-  function addFolder(newTask: TodoFolder) {
-    nextId.value++;
-    folders.value.push(newTask);
+  async function loadFolders() {
+    folders.value = await firebase.readFolders();
+    currentFolderId.value = folders.value[0].id;
   }
 
-  function deleteFolder(id: number) {
+  function addFolder(newFolder: TodoFolder) {
+    folders.value.push(newFolder);
+    firebase.writeFolder(newFolder);
+  }
+
+  function deleteFolder(id: string) {
     folders.value.splice(
       folders.value.findIndex((t) => t.id === id),
       1
     );
-
+    firebase.removeFolder(id);
     currentFolderId.value = folders.value[0].id;
   }
 
-  function openFolder(id: number) {
+  function openFolder(id: string) {
     currentFolderId.value = id;
   }
 
   return {
     folders,
-    nextId,
     currentFolderId,
     addFolder,
     deleteFolder,
